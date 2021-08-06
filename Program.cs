@@ -23,7 +23,15 @@ namespace ConsoleSQLServer
         static void PrintCountries()
         {
             var countryDAL = new CountryDAL(_iconfiguration);
-            var listCountryModel = countryDAL.GetList();
+            // Fetch All
+            var listCountryModelAll = countryDAL.GetList();
+            listCountryModelAll.ForEach(item =>
+            {
+                Console.WriteLine(item.Country);
+            });
+            Console.WriteLine("------------------------");
+            // Fetch only what starts with 'So'
+            var listCountryModel = countryDAL.GetList("So");
             listCountryModel.ForEach(item =>
             {
                 Console.WriteLine(item.Country);
