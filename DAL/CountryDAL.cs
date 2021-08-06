@@ -24,8 +24,14 @@ namespace ConsoleSQLServer.DAL
             {
                 using (SqlConnection con = new SqlConnection(_connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SP_COUNTRY_GET_LIST", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    //Using the stored procedure
+                    //SqlCommand cmd = new SqlCommand("SP_COUNTRY_GET_LIST", con);
+                    //cmd.CommandType = CommandType.StoredProcedure;
+
+                    //Using a simple query
+                    string query = @"SELECT *
+                                     FROM tb_country;";
+                    SqlCommand cmd = new SqlCommand(query, con);
                     con.Open();
                     SqlDataReader rdr = cmd.ExecuteReader();
                     while (rdr.Read())
